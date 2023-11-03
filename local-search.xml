@@ -4,11 +4,24 @@
   
   
   <entry>
+    <title>配置ssh白名单</title>
+    <link href="/2023/11/04/%E9%85%8D%E7%BD%AEssh%E7%99%BD%E5%90%8D%E5%8D%95/"/>
+    <url>/2023/11/04/%E9%85%8D%E7%BD%AEssh%E7%99%BD%E5%90%8D%E5%8D%95/</url>
+    
+    <content type="html"><![CDATA[<h1 id="背景需求"><a href="#背景需求" class="headerlink" title="背景需求"></a>背景需求</h1><p>在服务端配置22端口白名单，白名单之外的ip无法通过22端口访问服务端</p><h1 id="方法1：修改sshd配置文件"><a href="#方法1：修改sshd配置文件" class="headerlink" title="方法1：修改sshd配置文件"></a>方法1：修改sshd配置文件</h1><p>在<code>/etc/ssh/sshd_config</code>文件中添加<code>AllowUsers user@IP</code>，这里IP代表需要加白的IP。保存后执行<code>systemctl restart sshd</code></p><h1 id="方法2：iptables"><a href="#方法2：iptables" class="headerlink" title="方法2：iptables"></a>方法2：iptables</h1><p>原理：ACCEPT某些IP或端口进入，DROP其他<br>可以通过以下命令来添加允许某个IP地址或端口进入的规则：<code>sudo iptables -A INPUT -s [ip_address] -p [protocol] --dport [port] -j ACCEPT</code><br>这里<code>[ip_address]</code>可以为ip或网段</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo iptables -A INPUT -s X.X.X.X/X -p tcp --dport 22 -j ACCEPT<br>sudo iptables -A INPUT -s X.X.X.X/X -p tcp --dport 22 -j ACCEPT<br>...<br>sudo iptables -A INPUT -p tcp --dport 22 -j DROP<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>测试文章</title>
     <link href="/2022/07/12/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/"/>
     <url>/2022/07/12/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/</url>
     
-    <content type="html"><![CDATA[<h1 id="图片测试"><a href="#图片测试" class="headerlink" title="图片测试"></a>图片测试</h1><p><img src="https://baiimages.happyshark.cn/20220714095434.png" alt="github"></p><p><img src="https://baiimages.happyshark.cn/20220714103513.png" alt="github2"></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="图片测试"><a href="#图片测试" class="headerlink" title="图片测试"></a>图片测试</h1><p><img src="https://baiimages.happyshark.cn/20220714095434.png" alt="github"></p><p><img src="https://baiimages.happyshark.cn/20220714103513.png" alt="github2"></p><h1 id="Private-blog测试"><a href="#Private-blog测试" class="headerlink" title="Private blog测试"></a>Private blog测试</h1><p>滴滴滴</p>]]></content>
     
     
     <categories>
